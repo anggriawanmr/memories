@@ -12,6 +12,24 @@ const App = () => {
         </Typography>
         <img src={memories} alt="memories" height="60" />
       </AppBar>
+      <Grow in>
+        <Container>
+          <Grid
+            container
+            justify="space-between"
+            alignItems="stretch"
+            spacing={3}
+          >
+            <Grid xs={12} sm={7}>
+              <Posts />
+            </Grid>
+
+            <Grid xs={12} sm={7}>
+              <Form />
+            </Grid>
+          </Grid>
+        </Container>
+      </Grow>
     </Container>
   );
 };
