@@ -1,7 +1,14 @@
-import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 
-const Posts = () => {
-  return <h1>POSTS</h1>;
-};
-
-export default Posts;
+export default makeStyles((theme) => ({
+  mainContainer: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  smMargin: {
+    margin: theme.spacing(1),
+  },
+  actionDiv: {
+    textAlign: 'center',
+  },
+}));
