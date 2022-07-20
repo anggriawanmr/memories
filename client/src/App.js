@@ -33,15 +33,15 @@ const App = () => {
         <Container>
           <Grid
             container
-            justify="space-between"
+            justifyContent="space-between"
             alignItems="stretch"
             spacing={3}
           >
-            <Grid xs={12} sm={7}>
+            <Grid item xs={12} sm={6}>
               <Posts />
             </Grid>
 
-            <Grid xs={12} sm={7}>
+            <Grid item xs={12} sm={6}>
               <Form />
             </Grid>
           </Grid>
