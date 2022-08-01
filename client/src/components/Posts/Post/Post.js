@@ -50,7 +50,7 @@ const Post = ({ post, setCurrentId }) => {
         className={classes.title}
         variant="h5"
         gutterBottom
-        componen="h2"
+        component="h2"
       >
         {post.title}
       </Typography>
@@ -66,7 +66,7 @@ const Post = ({ post, setCurrentId }) => {
           onClick={() => dispatch(likePost(post._id))}
         >
           <ThumbUpAltIcon fontSize="small" />
-          Like
+          &nbsp; Like &nbsp;
           {post.likeCount}
         </Button>
         <Button
