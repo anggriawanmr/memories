@@ -8,12 +8,13 @@ import { createPost, updatePost } from '../../actions/posts';
 
 const Form = ({ currentId, setCurrentId }) => {
   const [postData, setPostData] = useState({
-    creator: '',
     title: '',
     message: '',
     tags: '',
     selectedFile: '',
   });
+
+  const user = JSON.parse(localStorage.getItem('profile'));
 
   const post = useSelector((state) =>
     currentId ? state.posts.find((post) => post._id === currentId) : null
@@ -26,28 +27,27 @@ const Form = ({ currentId, setCurrentId }) => {
     if (post) setPostData(post);
   }, [post]);
 
-  // Make a request to create a Post
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (currentId) {
-      dispatch(updatePost(currentId, postData));
-    } else {
-      dispatch(createPost(postData));
-    }
-
-    clear();
-  };
-
   const clear = () => {
-    setCurrentId(null);
+    setCurrentId(0);
     setPostData({
-      creator: '',
       title: '',
       message: '',
       tags: '',
       selectedFile: '',
     });
+  };
+
+  // Make a request to create a Post
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (currentId === 0) {
+      dispatch(createPost({ ...postData, name: user?.result?.name }));
+    } else {
+      dispatch(updatePost(currentId, postData));
+    }
+
+    clear();
   };
 
   return (
@@ -61,16 +61,7 @@ const Form = ({ currentId, setCurrentId }) => {
         <Typography variant="h6">
           {currentId ? 'Editing' : 'Creating'} a Memory
         </Typography>
-        <TextField
-          name="creator"
-          variant="outlined"
-          label="Creator"
-          fullWidth
-          value={postData.creator}
-          onChange={(e) =>
-            setPostData({ ...postData, creator: e.target.value })
-          }
-        />
+
         <TextField
           name="title"
           variant="outlined"
