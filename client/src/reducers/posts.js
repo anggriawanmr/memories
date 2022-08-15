@@ -1,6 +1,7 @@
 import {
   FETCH_ALL,
   CREATE,
+  FETCH_POST,
   UPDATE,
   DELETE,
   FETCH_BY_SEARCH,
@@ -25,6 +26,9 @@ export default (state = { isLoading: true, posts: [] }, action) => {
 
     case FETCH_BY_SEARCH:
       return { ...state, posts: action.payload };
+
+    case FETCH_POST:
+      return { ...state, post: action.payload };
 
     case LIKE:
       return {
