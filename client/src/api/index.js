@@ -19,6 +19,8 @@ export const fetchPostsBySearch = (searchQuery) =>
       searchQuery.tags
     }`
   );
+
+export const fetchPost = (id) => API.get(`/posts/${id}`);
 export const createPost = (newPost) => API.post('/posts', newPost);
 export const updatePost = (id, updatedPost) =>
   API.patch(`/posts/${id}`, updatedPost);
