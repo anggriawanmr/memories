@@ -3,7 +3,7 @@ import express from 'express';
 
 import PostMessage from '../models/postMessage.js';
 
-const router = express.router();
+const router = express.Router();
 
 export const getPosts = async (req, res) => {
   const { page } = req.query;
@@ -137,6 +137,8 @@ export const commentPost = async (req, res) => {
   const updatedPost = await PostMessage.findByIdAndUpdate(id, post, {
     new: true,
   });
+
+  res.json(updatedPost);
 };
 
 export default router;
