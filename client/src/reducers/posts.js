@@ -8,6 +8,7 @@ import {
   LIKE,
   START_LOADING,
   END_LOADING,
+  COMMENT,
 } from '../constants/actionTypes';
 
 export default (state = { isLoading: true, posts: [] }, action) => {
@@ -36,6 +37,17 @@ export default (state = { isLoading: true, posts: [] }, action) => {
         posts: state.posts.map((post) =>
           post._id === action.payload._id ? action.payload : post
         ),
+      };
+    case COMMENT:
+      return {
+        ...state,
+        posts: state.posts.map((post) => {
+          // return all the other posts normally
+          if (post._id === action.payload._id) return action.payload;
+
+          // change the post that just received a comment
+          return post;
+        }),
       };
 
     // Showing all post in array, then add new post and store in action.payload

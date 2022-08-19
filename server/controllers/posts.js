@@ -132,7 +132,7 @@ export const commentPost = async (req, res) => {
 
   const post = await PostMessage.findById(id);
 
-  post.comment.push(value);
+  post.comments.push(value);
 
   const updatedPost = await PostMessage.findByIdAndUpdate(id, post, {
     new: true,
